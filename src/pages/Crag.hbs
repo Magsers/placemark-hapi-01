@@ -1,0 +1,25 @@
+ <div class="columns is-vcentered">
+  <div class="column is-two-thirds">
+    {{> TitleBar title="Placemark - Climb Ireland" subTitle="Keep track of the Irish Crags you've climbed in!"}}
+  </div>
+  <div class="column">
+    {{> MainNavigator }}
+  </div>
+</div>
+
+<section class="section columns is-vcentered">
+ <div class="column has-text-left">
+    <div id="cragtitle" class="title">
+      {{crag.title}}
+    </div>
+    <span class="is-inline">
+      <div> Approach : {{crag.approach}}</div>
+    </span>
+    </div>
+
+  <div class="column has-text-centered">
+   <img width="300" src="{{crag.img}}" alt="{{crag.title}}"/>
+  </div>
+
+
+   </section>

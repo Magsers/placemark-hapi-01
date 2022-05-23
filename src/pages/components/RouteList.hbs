@@ -1,0 +1,18 @@
+<table class="table is-fullwidth">
+  <thead>
+    <th>Route</th>
+    <th>Grade</th>
+    <th>Climber</th>
+    <th>Crag</th>
+  </thead>
+  <tbody>
+    {{#each routes}}
+      <tr>
+        <td>{{name}}</td>
+        <td>{{grade}}</td>
+        <td> {{climber.firstName}} {{climber.lastName}} </td>
+        <td><a href="/crag/{{crag._id}}">{{crag.title}}</a></td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
