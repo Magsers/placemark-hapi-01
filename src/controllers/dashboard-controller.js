@@ -22,7 +22,7 @@ export const dashboardController = {
         const loggedInUser = request.auth.credentials;
         const rawCrag = request.payload.crag;
         const crag = await db.cragStore.findByTitle(rawCrag);
-        await db.routeStore.addRoute(request.payload.name, request.payload.grade, request.payload.height,request.payload.firstascent,request.payload.description,loggedInUser._id, crag._id);
+        await db.routeStore.addRoute(request.payload.name, request.payload.grade, request.payload.height,request.payload.firstascent,request.payload.description,request.payload.lat,request.payload.lng,loggedInUser._id, crag._id);
         return h.redirect("/report");
       } catch (err) {
         return h.view("main", { errors: [{ message: err.message }] });
