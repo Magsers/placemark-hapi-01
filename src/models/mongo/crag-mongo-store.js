@@ -22,6 +22,8 @@ export const cragMongoStore = {
     const crag = await cragStore.findOne({ _id: updatedCrag._id });
     crag.title = updatedCrag.title;
     crag.approach = updatedCrag.approach;
+    crag.lat = updatedCrag.lat;
+    crag.lng = updatedCrag.lng;
     crag.img = updatedCrag.img;
     await crag.save();
   },

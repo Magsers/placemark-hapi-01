@@ -37,16 +37,22 @@ export const testUsers = [
     {
       title: "Doonshean Head",
       approach: "by abseil",
+      lat: "52.160858",
+      lng: "-7.152420",
       img: ""
     },
     {
       title: "Gap of Dunloe",
       approach: "path from car park",
+      lat: "52.160858",
+      lng: "-7.152420",
       img: ""
     },
     {
       title: "Glendalough",
       approach: "by abseil",
+      lat: "52.160858",
+      lng: "-7.152420",
       img: ""
     }
   ];

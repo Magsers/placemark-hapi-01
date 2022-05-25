@@ -25,18 +25,45 @@ export const seedData = {
       ailladie: {
         title: "Ailladie",
         approach: "Park at Lat/Lng and follow path to sea cliffs.  Abseil from huge boulder",
+        lat: "53.067656",
+        lng: "-9.362239",
         img: "/images/ailladie.jpg"
       },
       murlough: {
         title: "Murlough Bay",
         approach: "Boat from Donegal",
+        lat: "55.21406334",
+        lng: "-6.12272558",
         img: "/images/murlough.jpg"
       },
       inismor: {
         title: "Inis Mor",
         approach: "Boat from Doolin, camping at opposite of island",
+        lat: "53.149634",
+        lng: "-9.810778",
         img: "/images/crag.jpg"
-      }
+      },
+      ballykeefe: {
+        title: "Ballykeefe",
+        approach: "Park at entrance to the woods and walk to the ampitheatre",
+        lat: "52.60923",
+        lng: "-7.40002159",
+        img: "/images/ballykeefe.jpg"
+      },
+      fairhead: {
+        title: "Fairhead",
+        approach: "Parking at Sean's farm.  20 minute walk to the top of the Prow.",
+        lat: "55.227755",
+        lng: "-6.1548246",
+        img: "/images/fairhead.jpg"
+      },
+      mournes: {
+        title: "The Mournes",
+        approach: "Via South carpark.  Follow the Mourne wall for 20 minutes until you veer off to the right.  Crags visible from a distance.",
+        lat: "54.1537794",
+        lng: "-6.06618910",
+        img: "/images/mournes.jpg"
+      },
     },
     routes: {
       _model : "Route",
