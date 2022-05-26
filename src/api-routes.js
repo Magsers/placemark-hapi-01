@@ -1,6 +1,6 @@
 import { userApi } from "./api/users-api.js";
 import { routesApi } from "./api/routes-api.js";
-import { cragsApi } from "./api/crags-api.js";
+import { cragApi } from "./api/crags-api.js";
 
 export const apiRoutes = [
   { method: "GET", path: "/api/users", config: userApi.find },
@@ -10,13 +10,15 @@ export const apiRoutes = [
   { method: "POST", path: "/api/users/authenticate", config: userApi.authenticate },
 
   { method: "GET", path: "/api/routes", config: routesApi.findAll },
+  { method: "GET", path: "/api/routes/{id}", config: routesApi.findOne },
   { method: "GET", path: "/api/crags/{id}/routes", config: routesApi.findByCrag },
   { method: "POST", path: "/api/crags/{id}/routes", config: routesApi.addRoute },
+  { method: "DELETE", path: "/api/routes/{id}", config: routesApi.deleteOne },
   { method: "DELETE", path: "/api/routes", config: routesApi.deleteAll },
 
-  { method: "GET", path: "/api/crags", config: cragsApi.find },
-  { method: "GET", path: "/api/crags/{id}", config: cragsApi.findOne },
-  { method: "POST", path: "/api/crags", config: cragsApi.create },
-  { method: "DELETE", path: "/api/crags/{id}", config: cragsApi.deleteOne },
-  { method: "DELETE", path: "/api/crags", config: cragsApi.deleteAll },
+  { method: "GET", path: "/api/crags", config: cragApi.find },
+  { method: "GET", path: "/api/crags/{id}", config: cragApi.findOne },
+  { method: "POST", path: "/api/crags", config: cragApi.create },
+  { method: "DELETE", path: "/api/crags/{id}", config: cragApi.deleteOne },
+  { method: "DELETE", path: "/api/crags", config: cragApi.deleteAll },
 ];

@@ -1,5 +1,6 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
+import { createToken } from "./jwt-utils.js";
 
 export const routesApi = {
   findAll: {
@@ -7,10 +8,41 @@ export const routesApi = {
       strategy: "jwt",
     },
     handler: async function (request, h) {
-      const routes = db.routeStore.getAllRoutes();
+     try {
+      const routes = await db.routeStore.getAllRoutes();
       return routes;
-    },
+     } catch (err) {
+      return Boom.serverUnavailable("Database Error");
+    }
   },
+  tags: ["api"],
+  // response: { schema: RouteArraySpec, failAction: validationError },
+  description: "Get all routeApi",
+  notes: "Returns all routeApi",
+},
+
+findOne: {
+  auth: {
+    strategy: "jwt",
+  },
+  async handler(request) {
+    try {
+      const route = await db.routeStore.getRouteById(request.params.id);
+      if (!route) {
+        return Boom.notFound("No route with this id");
+      }
+      return route;
+    } catch (err) {
+      return Boom.serverUnavailable("No route with this id");
+    }
+  },
+  tags: ["api"],
+  description: "Find a Route",
+  notes: "Returns a route",
+  // validate: { params: { id: IdSpec }, failAction: validationError },
+  // response: { schema: RouteSpecPlus, failAction: validationError },
+},
+
   findByCrag: {
     auth: {
       strategy: "jwt",
@@ -43,6 +75,9 @@ export const routesApi = {
       );
       return route;
     },
+    tags: ["api"],
+    description: "Create a route",
+    notes: "Returns the newly created route",
   },
 
   deleteAll: {
@@ -50,8 +85,35 @@ export const routesApi = {
       strategy: "jwt",
     },
     handler: async function (request, h) {
-      await db.routeStore.deleteAll();
-      return { success: true };
+      try {
+        await db.routeStore.deleteAll();
+        return { success: true };
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
     },
+    tags: ["api"],
+    description: "Delete all routeApi",
+},
+
+deleteOne: {
+  auth: {
+    strategy: "jwt",
   },
+  handler: async function (request, h) {
+    try {
+      const route = await db.routeStore.getRouteById(request.params.id);
+      if (!route) {
+        return Boom.notFound("No Route with this id");
+      }
+      await db.routeStore.deleteRoute(route._id);
+      return h.response().code(204);
+    } catch (err) {
+      return Boom.serverUnavailable("No Route with this id");
+    }
+   },
+  tags: ["api"],
+  description: "Delete a route",
+  // validate: { params: { id: IdSpec }, failAction: validationError },
+ },
 };

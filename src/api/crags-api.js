@@ -1,15 +1,25 @@
 import Boom from "@hapi/boom";
+import { db } from "../models/db.js";
 import { Crag } from "../models/mongo/crag.js";
+import { createToken } from "./jwt-utils.js";
 
-export const cragsApi = {
+export const cragApi = {
   find: {
     auth: {
       strategy: "jwt",
     },
     handler: async function (request, h) {
-      const crags = await Crag.find();
-      return crags;
+      try { 
+        const crags = await db.cragStore.getAllCrags();
+        return crags;
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
     },
+    tags: ["api"],
+    // response: { schema: CragArraySpec, failAction: validationError },
+    description: "Get all crags",
+    notes: "Returns all crags",
   },
 
   findOne: {
@@ -18,7 +28,7 @@ export const cragsApi = {
     },
     handler: async function (request, h) {
       try {
-        const crag = await Crag.findOne({ _id: request.params.id });
+        const crag = await db.cragStore.getCragById(request.params.id);
         if (!crag) {
           return Boom.notFound("No Crag with this id");
         }
@@ -27,6 +37,9 @@ export const cragsApi = {
         return Boom.notFound("No Crag with this id");
       }
     },
+    tags: ["api"],
+    description: "Find a Crag",
+    notes: "Returns a crag",
   },
 
   create: {
@@ -34,23 +47,20 @@ export const cragsApi = {
       strategy: "jwt",
     },
     handler: async function (request, h) {
-      const newCrag = new Crag(request.payload);
-      const crag = await newCrag.save();
-      if (crag) {
-        return h.response(crag).code(201);
+      try {
+        const crag = request.payload;
+        const newCrag = await db.cragStore.addCrag(crag);
+        if (newCrag) {
+          return h.response(newCrag).code(201);
+        }
+        return Boom.badImplementation("error creating crag");
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
       }
-      return Boom.badImplementation("error creating crag");
     },
-  },
-
-  deleteAll: {
-    auth: {
-      strategy: "jwt",
-    },
-    handler: async function (request, h) {
-      await Crag.remove({});
-      return { success: true };
-    },
+    tags: ["api"],
+    description: "Create a Crag",
+    notes: "Returns the newly created crag",
   },
 
   deleteOne: {
@@ -58,11 +68,35 @@ export const cragsApi = {
       strategy: "jwt",
     },
     handler: async function (request, h) {
-      const response = await Crag.deleteOne({ _id: request.params.id });
-      if (response.deletedCount === 1) {
-        return { success: true };
+      try {
+        const crag = await db.cragStore.getCragById(request.params.id);
+        if (!crag) {
+          return Boom.notFound("No Crag with this id");
+        }
+        await db.cragStore.deleteCragById(crag._id);
+        return h.response().code(204);
+      } catch (err) {
+        return Boom.serverUnavailable("No Crag with this id");
       }
-      return Boom.notFound("id not found");
     },
+    tags: ["api"],
+    description: "Delete a crag",
+    // validate: { params: { id: IdSpec }, failAction: validationError },
   },
-};
+
+  deleteAll: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      try {
+        await db.cragStore.deleteAllCrags();
+        return h.response().code(204);
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+    tags: ["api"],
+    description: "Delete all CragApi",
+  },
+} 

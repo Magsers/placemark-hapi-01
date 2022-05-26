@@ -43,13 +43,43 @@ export const placemarkService = {
     return response.data;
   },
 
-  async getRoutes(id) {
+  async getRoute(id) {
     const response = await axios.get(`${this.placemarkUrl}/api/crags/${id}/routes`);
     return response.data;
+  },
+
+  async getAllRoutes() {
+    const res = await axios.get(`${this.placemarkUrl}/api/routes`);
+    return res.data;
+  },
+
+  async deleteAllRoutes() {
+    const res = await axios.delete(`${this.placemarkUrl}/api/routes`);
+    return res.data;
+  },
+
+  async getCrag(id) {
+    const res = await axios.get(`${this.placemarkUrl}/api/crags/${id}`);
+    return res.data;
   },
 
   async createCrag(newCrag) {
     const response = await axios.post(`${this.placemarkUrl}/api/crags`, newCrag);
     return response.data;
+  },
+
+  async deleteAllCrags() {
+    const response = await axios.delete(`${this.placemarkUrl}/api/crags`);
+    return response.data;
+  },
+
+  async deleteCrag(id) {
+    const response = await axios.delete(`${this.placemarkUrl}/api/crags/${id}`);
+    return response;
+  },
+
+  async getAllCrags() {
+    const res = await axios.get(`${this.placemarkUrl}/api/crags`);
+    return res.data;
   },
 };

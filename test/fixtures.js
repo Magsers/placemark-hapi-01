@@ -65,7 +65,9 @@ export const testUsers = [
       firstascent: "Dave Ayton",
       description: "easy",
       lat: "52.160858",
-      lng: "-7.152420"
+      lng: "-7.152420",
+      climber: "",
+      crag: ""
     },
     {
       name: "Moonrill",
@@ -74,7 +76,9 @@ export const testUsers = [
       firstascent: "Richard Doody",
       description: "chimney climb, very exposed",
       lat: "52.149220",
-      lng: "-6.994620"
+      lng: "-6.994620",
+      climber: "",
+      crag: ""
     },
     {
       name: "An Bonain Bui",
@@ -83,6 +87,36 @@ export const testUsers = [
       firstascent: "Vicky Cleary",
       description: "polished",
       lat: "52.161290",
-      lng: "-7.231540"
+      lng: "-7.231540",
+      climber: "",
+      crag: ""
     }
 ];
+
+  export const burren = {
+    title: "The Burren",
+    approach: "Abseil",
+    lat: 20.00,
+    lng: 20.00,
+    img: ""
+  };
+
+  export const fairhead = {
+    title: "Fairhead",
+    approach: "by abseil",
+    lat: "52.160858",
+    lng: "-7.152420",
+    img: ""
+  };
+
+  export const jugcity = {
+    name: "Jug City",
+    grade: "VS",
+    height: 20,
+    firstascent: "Vicky Cleary",
+    description: "polished",
+    lat: "52.161290",
+    lng: "-7.231540",
+    climber: "",
+    crag: ""
+  };

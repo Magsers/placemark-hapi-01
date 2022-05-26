@@ -20,7 +20,7 @@ export const accountsController = {
     auth: false,
     handler: async function (request, h) {
       const user = request.payload;
-      user.password = await bcrypt.hash(user.password, saltRounds); 
+      // user.password = await bcrypt.hash(user.password, saltRounds); 
       await db.userStore.addUser(user);
       return h.redirect("/");
     },
@@ -36,8 +36,9 @@ export const accountsController = {
     handler: async function (request, h) {
       const { email, password } = request.payload;
       const user = await db.userStore.getUserByEmail(email);
-      const passwordsMatch = await bcrypt.compare(password, user.password);
-      if (!user || !passwordsMatch) {
+      // const passwordsMatch = await bcrypt.compare(password, user.password);
+      // if (!user || !passwordsMatch) {
+        if (!user || user.password !== password) {        
         return h.redirect("/");
       }
       request.cookieAuth.set({ id: user._id });
