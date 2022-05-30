@@ -1,6 +1,8 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
 import { createToken } from "./jwt-utils.js";
+import { IdSpec, RouteSpec, RouteSpecPlus, RouteArraySpec } from "../models/db/joi-schema.js";
+import { validationError } from "../logger.js";
 
 export const routesApi = {
   findAll: {
@@ -16,7 +18,7 @@ export const routesApi = {
     }
   },
   tags: ["api"],
-  // response: { schema: RouteArraySpec, failAction: validationError },
+  response: { schema: RouteArraySpec, failAction: validationError },
   description: "Get all routeApi",
   notes: "Returns all routeApi",
 },
@@ -39,8 +41,8 @@ findOne: {
   tags: ["api"],
   description: "Find a Route",
   notes: "Returns a route",
-  // validate: { params: { id: IdSpec }, failAction: validationError },
-  // response: { schema: RouteSpecPlus, failAction: validationError },
+  validate: { params: { id: IdSpec }, failAction: validationError },
+  response: { schema: RouteSpecPlus, failAction: validationError },
 },
 
   findByCrag: {
@@ -53,12 +55,34 @@ findOne: {
     },
   },
 
+  // addRoute: {
+  //   auth: {
+  //     strategy: "jwt",
+  //   },
+  //   handler: async function (request, h) {
+  //     try {
+  //       const route = await db.routeStore.addRoute(request.params.id, request.payload);
+  //       if (route) {
+  //         return h.response(route).code(201);
+  //       }
+  //       return Boom.badImplementation("error creating route");
+  //     } catch (err) {
+  //       return Boom.serverUnavailable("Database Error");
+  //     }
+  //   },
+  //   tags: ["api"],
+  //   description: "Create a route",
+  //   notes: "Returns the newly created route",
+  //   validate: { payload: RouteSpec },
+  //   response: { schema: RouteSpecPlus, failAction: validationError },
+  // },
+
   addRoute: {
     auth: {
       strategy: "jwt",
     },
     handler: async function (request, h) {
-      const crag = await db.cragStore.findById(request.params.id);
+      const crag = await db.cragStore.getCragById(request.params.id);
       if (!crag) {
         return Boom.notFound("No Crag with this id");
       }
@@ -114,6 +138,6 @@ deleteOne: {
    },
   tags: ["api"],
   description: "Delete a route",
-  // validate: { params: { id: IdSpec }, failAction: validationError },
+  validate: { params: { id: IdSpec }, failAction: validationError },
  },
 };

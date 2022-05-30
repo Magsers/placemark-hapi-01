@@ -53,6 +53,11 @@ export const placemarkService = {
     return res.data;
   },
 
+  async deleteRoute(id) {
+    const res = await axios.delete(`${this.placemarkUrl}/api/routes/${id}`);
+    return res.data;
+  },
+
   async deleteAllRoutes() {
     const res = await axios.delete(`${this.placemarkUrl}/api/routes`);
     return res.data;

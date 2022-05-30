@@ -1,7 +1,8 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
-import { Crag } from "../models/mongo/crag.js";
 import { createToken } from "./jwt-utils.js";
+import { IdSpec, CragArraySpec, CragSpec, CragSpecPlus } from "../models/db/joi-schema.js";
+import { validationError } from "../logger.js";
 
 export const cragApi = {
   find: {
@@ -17,7 +18,7 @@ export const cragApi = {
       }
     },
     tags: ["api"],
-    // response: { schema: CragArraySpec, failAction: validationError },
+    response: { schema: CragArraySpec, failAction: validationError },
     description: "Get all crags",
     notes: "Returns all crags",
   },
@@ -40,6 +41,8 @@ export const cragApi = {
     tags: ["api"],
     description: "Find a Crag",
     notes: "Returns a crag",
+    validate: { params: { id: IdSpec }, failAction: validationError },
+    response: { schema: CragSpecPlus, failAction: validationError },
   },
 
   create: {
@@ -61,6 +64,8 @@ export const cragApi = {
     tags: ["api"],
     description: "Create a Crag",
     notes: "Returns the newly created crag",
+    validate: { payload: CragSpec, failAction: validationError },
+    response: { schema: CragSpecPlus, failAction: validationError },
   },
 
   deleteOne: {
@@ -81,7 +86,7 @@ export const cragApi = {
     },
     tags: ["api"],
     description: "Delete a crag",
-    // validate: { params: { id: IdSpec }, failAction: validationError },
+    validate: { params: { id: IdSpec }, failAction: validationError },
   },
 
   deleteAll: {

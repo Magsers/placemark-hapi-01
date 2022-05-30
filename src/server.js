@@ -5,6 +5,7 @@ import Cookie from "@hapi/cookie";
 import Handlebars from "handlebars";
 import HapiSwagger from "hapi-swagger";
 import dotenv from "dotenv";
+import Joi from "joi";
 import path from "path";
 import { fileURLToPath } from "url";
 import jwt from "hapi-auth-jwt2";
@@ -57,6 +58,7 @@ async function init() {
   await server.register(Vision);
   await server.register(Cookie);
   await server.register(jwt);
+  server.validator(Joi);
 
   server.views({
     engines: {

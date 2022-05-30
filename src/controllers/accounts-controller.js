@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt"; 
 import { db } from "../models/db.js";
+import { UserSpec, UserCredentialsSpec } from "../models/db/joi-schema.js";
 
 const saltRounds = 10; 
 
@@ -18,6 +19,13 @@ export const accountsController = {
   },
   signup: {
     auth: false,
+    validate: {
+      payload: UserSpec,
+      options: { abortEarly: false },
+      failAction: function (request, h, error) {
+        return h.view("signup-view", { title: "Sign up error" }).takeover().code(400);
+      },
+    },
     handler: async function (request, h) {
       const user = request.payload;
       // user.password = await bcrypt.hash(user.password, saltRounds); 
@@ -33,12 +41,19 @@ export const accountsController = {
   },
   login: {
     auth: false,
+    validate: {
+      payload: UserCredentialsSpec,
+      options: { abortEarly: false },
+      failAction: function (request, h, error) {
+        return h.view("login-view", { title: "Login error", errors: error.details }).takeover().code(400);
+      },
+    },
     handler: async function (request, h) {
       const { email, password } = request.payload;
       const user = await db.userStore.getUserByEmail(email);
-      // const passwordsMatch = await bcrypt.compare(password, user.password);
+      const passwordsMatch = await bcrypt.compare(password, user.password);
       // if (!user || !passwordsMatch) {
-        if (!user || user.password !== password) {        
+      if (!user || user.password !== password) {        
         return h.redirect("/");
       }
       request.cookieAuth.set({ id: user._id });
@@ -46,6 +61,7 @@ export const accountsController = {
     },
   },
   logout: {
+    auth: false,
     handler: function (request, h) {
       request.cookieAuth.clear();
       return h.redirect("/");

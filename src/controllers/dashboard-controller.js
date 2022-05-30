@@ -1,4 +1,5 @@
 import { db } from "../models/db.js";
+import { RouteSpec } from "../models/db/joi-schema.js";
 
 export const dashboardController = {
   index: {
@@ -17,6 +18,13 @@ export const dashboardController = {
     },
   },
   addRoute: {
+    validate: {
+      payload: RouteSpec,
+      options: { abortEarly: false },
+      failAction: function (request, h, error) {
+        return h.view("crag-view", { title: "Add Route error", errors: error.details }).takeover().code(400);
+      },
+    },
     handler: async function (request, h) {
       try {
         const loggedInUser = request.auth.credentials;
