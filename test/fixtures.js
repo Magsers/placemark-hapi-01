@@ -39,21 +39,21 @@ export const testUsers = [
       approach: "by abseil",
       lat: "52.160858",
       lng: "-7.152420",
-      img: ""
+      img: "/images/ailladie.jpg"
     },
     {
       title: "Gap of Dunloe",
       approach: "path from car park",
       lat: "52.160858",
       lng: "-7.152420",
-      img: ""
+      img: "/images/ailladie.jpg"
     },
     {
       title: "Glendalough",
       approach: "by abseil",
       lat: "52.160858",
       lng: "-7.152420",
-      img: ""
+      img: "/images/ailladie.jpg"
     }
   ];
 
@@ -66,8 +66,8 @@ export const testUsers = [
       description: "easy",
       lat: "52.160858",
       lng: "-7.152420",
-      climber: "",
-      crag: ""
+      climber: "->users.homer",
+      crag: "->crags.ailladie"
     },
     {
       name: "Moonrill",
@@ -77,8 +77,8 @@ export const testUsers = [
       description: "chimney climb, very exposed",
       lat: "52.149220",
       lng: "-6.994620",
-      climber: "",
-      crag: ""
+      climber: "->users.marge",
+      crag: "->crags.ailladie"
     },
     {
       name: "An Bonain Bui",
@@ -88,8 +88,8 @@ export const testUsers = [
       description: "polished",
       lat: "52.161290",
       lng: "-7.231540",
-      climber: "",
-      crag: ""
+      climber: "->users.bart",
+      crag: "->crags.ailladie"
     }
 ];
 
@@ -98,7 +98,7 @@ export const testUsers = [
     approach: "Abseil",
     lat: 20.00,
     lng: 20.00,
-    img: ""
+    img: "/images/ailladie.jpg"
   };
 
   export const fairhead = {
@@ -106,7 +106,7 @@ export const testUsers = [
     approach: "by abseil",
     lat: "52.160858",
     lng: "-7.152420",
-    img: ""
+    img: "/images/ailladie.jpg"
   };
 
   export const jugcity = {
@@ -117,6 +117,6 @@ export const testUsers = [
     description: "polished",
     lat: "52.161290",
     lng: "-7.231540",
-    climber: "",
-    crag: ""
+    climber: "->users.marge",
+    crag: "->crags.burren"
   };
