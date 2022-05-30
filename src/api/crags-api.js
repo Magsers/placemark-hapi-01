@@ -29,7 +29,7 @@ export const cragApi = {
     },
     handler: async function (request, h) {
       try {
-        const crag = await db.cragStore.getCragById(request.params._id);
+        const crag = await db.cragStore.getCragById(request.params.id);
         if (!crag) {
           return Boom.notFound("No Crag with this id");
         }
