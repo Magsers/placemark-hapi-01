@@ -21,4 +21,6 @@ export const apiRoutes = [
   { method: "POST", path: "/api/crags", config: cragApi.create },
   { method: "DELETE", path: "/api/crags/{id}", config: cragApi.deleteOne },
   { method: "DELETE", path: "/api/crags", config: cragApi.deleteAll },
+
+  // { method: "POST", path: "/api/crags/{id}/uploadimage", config: cragApi.uploadImage },
 ];

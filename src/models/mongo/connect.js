@@ -5,6 +5,7 @@ import * as seeder from "mais-mongoose-seeder";
 import { seedData } from "./seed-data.js";
 import {Crag} from "./crag.js";
 import {Route} from "./route.js";
+import {Image} from "./image.js";
 
 const seedLib = seeder.default;
 

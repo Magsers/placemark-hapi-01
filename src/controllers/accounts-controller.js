@@ -28,7 +28,7 @@ export const accountsController = {
     },
     handler: async function (request, h) {
       const user = request.payload;
-      // user.password = await bcrypt.hash(user.password, saltRounds); 
+      user.password = await bcrypt.hash(user.password, saltRounds); 
       await db.userStore.addUser(user);
       return h.redirect("/");
     },

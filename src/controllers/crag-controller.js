@@ -1,5 +1,6 @@
 import { db } from "../models/db.js";
 import { CragSpec } from "../models/db/joi-schema.js";
+import { imageStore } from "../models/mongo/image-store.js";
 
 
 export const cragController = {
@@ -70,5 +71,36 @@ export const cragController = {
     },
   },
 
+  uploadImage: {
+    handler: async function(request, h) {
+      try {
+        const crag = await db.cragStore.getCragById(request.params.id);
+        const file = request.payload.imagefile;
+        if (Object.keys(file).length > 0) {
+          const url = await imageStore.uploadImage(request.payload.imagefile);
+          crag.img = url;
+          db.cragStore.updateCrag(crag);
+        }
+        return h.redirect(`/crag/${crag._id}`);
+      } catch (err) {
+        console.log(err);
+        return h.redirect(`/crag/${crag._id}`);
+      }
+    },
+    payload: {
+      multipart: true,
+      output: "data",
+      maxBytes: 209715200,
+      parse: true
+    }
+  },
+
+  deleteImage: {
+    handler: async function (request, h) {
+    const crag = await db.cragStore.getCragById(request.params.id);
+    await db.imageStore.deleteImage(request.params.imgId);
+    return h.redirect(`/crag/${ crag._id}`);
+    },
+  },
 
 };

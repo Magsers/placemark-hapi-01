@@ -16,6 +16,9 @@ export const webRoutes = [
 
   { method: "GET", path: "/crag/{id}", config: cragController.index },
 
+  { method: "POST", path: "/crag/{id}/uploadimage", config: cragController.uploadImage },
+  { method: "GET", path: "/crag/{id}/deleteImage/{imgId}", config: cragController.deleteImage },
+
   {
     method: "GET",
     path: "/{param*}",

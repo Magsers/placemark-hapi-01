@@ -17,10 +17,10 @@ export const routesApi = {
       return Boom.serverUnavailable("Database Error");
     }
   },
-  tags: ["api"],
-  response: { schema: RouteArraySpec, failAction: validationError },
-  description: "Get all routeApi",
-  notes: "Returns all routeApi",
+  // tags: ["api"],
+  // response: { schema: RouteArraySpec, failAction: validationError },
+  // description: "Get all routeApi",
+  // notes: "Returns all routeApi",
 },
 
 findOne: {
@@ -38,11 +38,11 @@ findOne: {
       return Boom.serverUnavailable("No route with this id");
     }
   },
-  tags: ["api"],
-  description: "Find a Route",
-  notes: "Returns a route",
-  validate: { params: { id: IdSpec }, failAction: validationError },
-  response: { schema: RouteSpecPlus, failAction: validationError },
+  // tags: ["api"],
+  // description: "Find a Route",
+  // notes: "Returns a route",
+  // validate: { params: { id: IdSpec }, failAction: validationError },
+  // response: { schema: RouteSpecPlus, failAction: validationError },
 },
 
   findByCrag: {
@@ -99,9 +99,9 @@ findOne: {
       );
       return route;
     },
-    tags: ["api"],
-    description: "Create a route",
-    notes: "Returns the newly created route",
+    // tags: ["api"],
+    // description: "Create a route",
+    // notes: "Returns the newly created route",
   },
 
   deleteAll: {
@@ -136,8 +136,8 @@ deleteOne: {
       return Boom.serverUnavailable("No Route with this id");
     }
    },
-  tags: ["api"],
-  description: "Delete a route",
-  validate: { params: { id: IdSpec }, failAction: validationError },
+  // tags: ["api"],
+  // description: "Delete a route",
+  // validate: { params: { id: IdSpec }, failAction: validationError },
  },
 };
