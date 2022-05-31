@@ -151,12 +151,12 @@ export const seedData = {
     images: {
       _model: "Image",
       burren: {
-        title: "Burren",
+        title: "The Burren",
         // url: "https://res.cloudinary.com/dilnorp24/image/upload/v1648247194/syb39p09fikkk4d3vhpn.jpg",
         crag: "->crags.burren"
       },
       murlough: {
-        title: "Murlough",
+        title: "Murlough Bay",
         // url: "https://res.cloudinary.com/dilnorp24/image/upload/v1648247194/syb39p09fikkk4d3vhpn.jpg",
         crag: "->crags.murlough"
       },
@@ -166,17 +166,17 @@ export const seedData = {
         crag: "->crags.inismor"
       },
       ballykeefe: {
-        title: "Ballykeefe",
+        title: "Ballykeefe Quarry",
         // url: "https://res.cloudinary.com/dilnorp24/image/upload/v1648247194/syb39p09fikkk4d3vhpn.jpg",
         crag: "->crags.ballykeefe"
       },
       mournes: {
-        title: "Mournes",
+        title: "The Mournes",
         // url: "https://res.cloudinary.com/dilnorp24/image/upload/v1648247194/syb39p09fikkk4d3vhpn.jpg",
         crag: "->crags.mournes"
       },
       dalkey: {
-        title: "Dalkey",
+        title: "Dalkey Quarry",
         // url: "https://res.cloudinary.com/dilnorp24/image/upload/v1648247194/syb39p09fikkk4d3vhpn.jpg",
         crag: "->crags.dalkey"
       },
