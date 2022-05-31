@@ -15,21 +15,21 @@
     <span class="is-inline">
       <div> Approach : {{crag.approach}}</div>
     </span>
-   
+    </div>
   <div class="column has-text-centered">
    <img width="300" src="{{crag.img}}" alt="{{crag.title}}"/>
-   <a href="/crag/{{crag._id}}/deleteImage/{{imgId}}" class="ui icon button">
+   <a href="/crag/{{crag._id}}/deleteImage/{{crag.img}}" class="ui icon button">
                 <i class="fas fa-trash-alt"></i>
             </a>
   </div>
- </div>
+
 
   <div class="column has-text-centered">
 
-     <figure class="image is-256x256">
+     {{!-- <figure class="image is-256x256">
       <img src="{{crag.img}}"> 
       
-    </figure>
+    </figure> --}}
   </div>
   <div class="card-content">
     <form action="/crag/{{crag._id}}/uploadimage" method="POST" enctype="multipart/form-data">

@@ -7,7 +7,7 @@ const cragSchema = Schema({
   approach: String,
   lat: String,
   lng: String,
-  img: String,
+  img: String
 });
 
 export const Crag = Mongoose.model("Crag", cragSchema);
