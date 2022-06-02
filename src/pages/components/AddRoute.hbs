@@ -1,57 +1,81 @@
 <form action="/addroute" method="POST">
-  <div class="field">
-    <label class="label">Add a Route</label> <input class="input" type="text" placeholder="Route Name" name="name">
-  </div>
-  <div class="field">
+  <div class="field is-horizontal">
+    <div class="field">
+      <label class="label">Add a Route</label> <input class="input" type="text" placeholder="Route Name" name="name">
+    </div>
+    <div class="field">
+      <div class="container is-fluid">
         <label class="label">Grade</label>
-        <select type="text" placeholder="Select Grade" name="grade">
-        <option value="Diff" tag="1">Diff</option>
-        <option value="V Diff">V Diff</option>
-        <option value="Severe">Severe</option>
-        <option value="Hard Severe">Hard Severe</option>
-        <option value="Very Severe">Very Severe</option>
-        <option value="Hard Very Severe">Hard Very Severe</option>
-        <option value="E1">E1</option>
-        <option value="E2">E2</option>
-        <option value="E3">E3</option>
-        <option value="E4">E4</option>
-        <option value="E5">E5</option>
-        <option value="E6">E6</option>
-        <option value="E7">E7</option>
-        </select>
+        <div class="control is-expanded has-icons-left">
+          <div class="select">
+            <select type="text" placeholder="Select Grade" name="grade">
+              <option value="Diff" tag="1">Diff</option>
+              <option value="V Diff">V Diff</option>
+              <option value="Severe">Severe</option>
+              <option value="Hard Severe">Hard Severe</option>
+              <option value="Very Severe">Very Severe</option>
+              <option value="Hard Very Severe">Hard Very Severe</option>
+              <option value="E1">E1</option>
+              <option value="E2">E2</option>
+              <option value="E3">E3</option>
+              <option value="E4">E4</option>
+              <option value="E5">E5</option>
+              <option value="E6">E6</option>
+              <option value="E7">E7</option>
+            </select>
+          </div>
+        </div>
       </div>
-   <div class="field">
-        <label>Height:</label>
-        <input class="input" type="number" placeholder="Enter Height in metres" name="height">
-    </div>
-    <div class="field">
-         <label>First Ascent:</label>
+      </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field">
+          <label class="label">Height:</label>
+          <input class="input" type="number" placeholder="Enter Height in metres" name="height">
+        </div>
+      <div class="field">
+         <div class="container is-fluid">
+        <label class="label">First Ascent:</label>
         <input class="input" type="text" placeholder="First Ascent (optional)" name="firstascent">
-    </div>
-    <div class="field">
-         <label>Description:</label>
+      </div>
+      </div>
+      </div>
+      
+      <div class="field">
+        <label class="label">Description:</label>
         <input class="input" type="text" placeholder="Description" name="description">
-    </div>
-     <div class="field">
-         <label>Latitude:</label>
+      </div>
+
+       <div class="field is-horizontal">
+      <div class="field">
+        <label class="label">Latitude:</label>
         <input class="input" type="number" placeholder="00.00" step=".01" min="51" max="56" name="lat">
-    </div>
-     <div class="field">
-         <label>Longitude:</label>
-        <input class="input" type="number" placeholder="00.00" step=".01" min="-5" max="-11" name="lng">
-    </div>
-    <div class="field">
-      <div class="select">
-        <select name="crag">
-          {{#each crags }}
+      </div>
+     
+      <div class="field">
+         <div class="container is-fluid">
+        <label class="label">Longitude:</label>
+        <input class="input" type="number" placeholder="00.00" step=".01" min="-11" max="-5" name="lng">
+      </div>
+      </div>
+      </div>
+
+      <div class="field">
+         <label class="label">Crag : </label>
+        <div class="select">
+          <select name="crag">
+            {{#each crags }}
             <option> {{title}}</option>
-          {{/each}}
-        </select>
+            {{/each}}
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="field">
-      <div class="control">
-        <button class="button is-link is-light">Add Route</button>
+      
+      <div class="field">
+        <div class="control">
+          <button class="button is-link is-light">Add Route</button>
+        </div>
       </div>
-    </div>
+    
 </form>
