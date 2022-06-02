@@ -52,8 +52,8 @@ export const accountsController = {
       const { email, password } = request.payload;
       const user = await db.userStore.getUserByEmail(email);
       const passwordsMatch = await bcrypt.compare(password, user.password);
-      // if (!user || !passwordsMatch) {
-      if (!user || user.password !== password) {        
+      if (!user || !passwordsMatch) {
+      // if (!user || user.password !== password) {        
         return h.redirect("/");
       }
       request.cookieAuth.set({ id: user._id });
