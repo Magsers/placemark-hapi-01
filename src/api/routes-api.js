@@ -70,11 +70,11 @@ findOne: {
   //       return Boom.serverUnavailable("Database Error");
   //     }
   //   },
-  //   tags: ["api"],
-  //   description: "Create a route",
-  //   notes: "Returns the newly created route",
-  //   validate: { payload: RouteSpec },
-  //   response: { schema: RouteSpecPlus, failAction: validationError },
+    // tags: ["api"],
+    // description: "Create a route",
+    // notes: "Returns the newly created route",
+    // validate: { payload: RouteSpec },
+    // response: { schema: RouteSpecPlus, failAction: validationError },
   // },
 
   addRoute: {

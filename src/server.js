@@ -2,7 +2,7 @@ import Hapi from "@hapi/hapi";
 import Bell from "@hapi/bell";
 import Inert from "@hapi/inert";
 import Vision from "@hapi/vision";
-import AuthCookie from "@hapi/cookie"; // OAuth
+import AuthCookie  from "@hapi/cookie"; // OAuth
 // import Cookie from "@hapi/cookie";
 import Handlebars from "handlebars";
 import HapiSwagger from "hapi-swagger";
@@ -79,8 +79,8 @@ async function init() {
 // Oauth
   server.auth.strategy("cookie-auth", "cookie", {
     cookie: {
-        name: "placemark_auth", // Name of auth cookie to be set
-        password: "password-should-be-32-characters",  // String used to encrypt cookie
+        name: process.env.cookie_name, // Name of auth cookie to be set
+        password: process.env.cookie_password,  // String used to encrypt cookie
         isSecure: false     // Should be 'true' in production software (requires HTTPS)
     },
     redirectTo: "/",
