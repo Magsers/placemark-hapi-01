@@ -17,9 +17,9 @@ export const userApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
-    // tags: ["api"],
-    // description: "Get all userApi",
-    // notes: "Returns details of all userApi",
+    tags: ["api"],
+    description: "Get all userApi",
+    notes: "Returns details of all userApi",
     // response: { schema: UserArray, failAction: validationError },
   },
 
@@ -38,9 +38,9 @@ export const userApi = {
         return Boom.serverUnavailable("No User with this id");
       }
     },
-    // tags: ["api"],
-    // description: "Get a specific user",
-    // notes: "Returns user details",
+    tags: ["api"],
+    description: "Get a specific user",
+    notes: "Returns user details",
     // validate: { params: { id: IdSpec }, failAction: validationError },
     // response: { schema: UserSpecPlus, failAction: validationError },
   },
@@ -58,9 +58,9 @@ export const userApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
-    // tags: ["api"],
-    // description: "Create a User",
-    // notes: "Returns the newly created user",
+    tags: ["api"],
+    description: "Create a User",
+    notes: "Returns the newly created user",
     // validate: { payload: UserSpec, failAction: validationError },
     // response: { schema: UserSpecPlus, failAction: validationError },
   },
@@ -77,9 +77,9 @@ export const userApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
-    // tags: ["api"],
-    // description: "Delete all userApi",
-    // notes: "All userApi removed from Placemark",
+    tags: ["api"],
+    description: "Delete all userApi",
+    notes: "All userApi removed from Placemark",
   },
 
   authenticate: {
@@ -99,9 +99,9 @@ export const userApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
-  //   tags: ["api"],
-  //   description: "Authenticate  a User",
-  //   notes: "If user has valid email/password, create and return a JWT token",
+    tags: ["api"],
+    description: "Authenticate  a User",
+    notes: "If user has valid email/password, create and return a JWT token",
   //   validate: { payload: UserCredentialsSpec, failAction: validationError },
   //   response: { schema: JwtAuth, failAction: validationError }
   // 

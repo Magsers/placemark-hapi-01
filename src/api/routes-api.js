@@ -17,10 +17,10 @@ export const routesApi = {
       return Boom.serverUnavailable("Database Error");
     }
   },
-  // tags: ["api"],
-  // response: { schema: RouteArraySpec, failAction: validationError },
-  // description: "Get all routeApi",
-  // notes: "Returns all routeApi",
+  tags: ["api"],
+  response: { schema: RouteArraySpec, failAction: validationError },
+  description: "Get all routeApi",
+  notes: "Returns all routeApi",
 },
 
 findOne: {
@@ -38,9 +38,9 @@ findOne: {
       return Boom.serverUnavailable("No route with this id");
     }
   },
-  // tags: ["api"],
-  // description: "Find a Route",
-  // notes: "Returns a route",
+  tags: ["api"],
+  description: "Find a Route",
+  notes: "Returns a route",
   // validate: { params: { id: IdSpec }, failAction: validationError },
   // response: { schema: RouteSpecPlus, failAction: validationError },
 },
@@ -55,53 +55,55 @@ findOne: {
     },
   },
 
-  addRoute: {
-    auth: {
-      strategy: "jwt",
-    },
-    handler: async function (request, h) {
-      try {
-        const route = await db.routeStore.addRoute(request.params.id, request.payload);
-        if (route) {
-          return h.response(route).code(201);
-        }
-        return Boom.badImplementation("error creating route");
-      } catch (err) {
-        return Boom.serverUnavailable("Database Error");
-      }
-    },
-    // tags: ["api"],
-    // description: "Create a route",
-    // notes: "Returns the newly created route",
-    // validate: { payload: RouteSpec },
-    // response: { schema: RouteSpecPlus, failAction: validationError },
-  },
-
   // addRoute: {
   //   auth: {
   //     strategy: "jwt",
   //   },
   //   handler: async function (request, h) {
-  //     const crag = await db.cragStore.getCragById(request.params.id);
-  //     if (!crag) {
-  //       return Boom.notFound("No Crag with this id");
+  //     try {
+  //       const route = await db.routeStore.addRoute(request.params.id, request.payload);
+  //       if (route) {
+  //         return h.response(route).code(201);
+  //       }
+  //       return Boom.badImplementation("error creating route");
+  //     } catch (err) {
+  //       return Boom.serverUnavailable("Database Error");
   //     }
-  //     const route = await db.routeStore.addRoute(
-  //       request.payload.name,
-  //       request.payload.grade,
-  //       request.payload.height,
-  //       request.payload.description,
-  //       request.payload.lat,
-  //       request.payload.lng,
-  //       request.auth.credentials,
-  //       crag
-  //     );
-  //     return route;
   //   },
-  //   // tags: ["api"],
-  //   // description: "Create a route",
-  //   // notes: "Returns the newly created route",
+  //   tags: ["api"],
+  //   description: "Create a route",
+  //   notes: "Returns the newly created route",
+    // validate: { payload: RouteSpec },
+    // response: { schema: RouteSpecPlus, failAction: validationError },
   // },
+
+  addRoute: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      const crag = await db.cragStore.getCragById(request.params.id);
+      if (!crag) {
+        return Boom.notFound("No Crag with this id");
+      }
+      const route = await db.routeStore.addRoute(
+        request.payload.name,
+        request.payload.grade,
+        request.payload.height,
+        request.payload.description,
+        request.payload.lat,
+        request.payload.lng,
+        request.auth.credentials,
+        crag
+      );
+      return route;
+    },
+    tags: ["api"],
+    description: "Create a route",
+    notes: "Returns the newly created route",
+    // validate: { payload: RouteSpec },
+    // response: { schema: RouteSpecPlus, failAction: validationError },
+  },
 
   deleteAll: {
     auth: {
@@ -135,8 +137,8 @@ deleteOne: {
       return Boom.serverUnavailable("No Route with this id");
     }
    },
-  // tags: ["api"],
-  // description: "Delete a route",
+  tags: ["api"],
+  description: "Delete a route",
   // validate: { params: { id: IdSpec }, failAction: validationError },
  },
 };

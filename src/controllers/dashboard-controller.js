@@ -47,13 +47,13 @@ export const dashboardController = {
   // };
 
   addRoute: {
-    validate: {
-      payload: RouteSpec,
-      options: { abortEarly: false },
-      failAction: function (request, h, error) {
-        return h.view("Dashboard", { title: "Add Route error", errors: error.details }).takeover().code(400);
-      },
-    },
+    // validate: {
+    //   payload: RouteSpec,
+    //   options: { abortEarly: false },
+    //   failAction: function (request, h, error) {
+    //     return h.view("Dashboard", { title: "Add Route error", errors: error.details }).takeover().code(400);
+    //   },
+    // },
     handler: async function (request, h) {
       try {
         const loggedInUser = request.auth.credentials;

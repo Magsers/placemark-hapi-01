@@ -11,12 +11,20 @@ export const routeMongoStore = {
     return routes;
   },
 
+  async getRouteById(id) {
+    if (id) {
+      const route = await Route.findOne({ _id: id }).lean();
+      return route;
+    }
+    return null;
+  },
+
   async addRoute(name, grade, height, description, lat, lng, climber, crag) {
     const newRoute = new Route({
-      name: name,
-      grade: grade,
-      height: height,
-      description: description,
+      name,
+      grade,
+      height,
+      description,
       lat,
       lng,
       climber: climber._id,
@@ -26,7 +34,26 @@ export const routeMongoStore = {
     return newRoute;
   },
 
-  async deleteAll() {
+  async deleteRoute(id) {
+    try {
+      await Route.deleteOne({ _id: id });
+    } catch (error) {
+      console.log("bad id");
+    }
+  },
+
+  async deleteAllRoutes() {
     await Route.deleteMany({});
   },
+
+  async updateRoute(updatedRoute) {
+    const route = await Route.findOne({ _id: updatedRoute._id });
+    route.name = updatedRoute.name;
+    route.grade = updatedRoute.grade;
+    route.height = updatedRoute.height;
+    route.description = updatedRoute.description;
+    // route.datedone = updatedRoute.datedone;
+    await route.save();
+  },
+
 };

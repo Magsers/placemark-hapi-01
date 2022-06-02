@@ -65,8 +65,8 @@ export const testUsers = [
       description: "easy",
       lat: "52.160858",
       lng: "-7.152420",
-      climber: "",
-      crag: ""
+      climber: "6298fc46b21fabae42c24964",
+      crag: "6298fc46b21fabae42c24970"
     },
     {
       name: "Moonrill",
@@ -75,8 +75,8 @@ export const testUsers = [
       description: "chimney climb, very exposed",
       lat: "52.149220",
       lng: "-6.994620",
-      climber: "",
-      crag: ""
+      climber: "6298fc46b21fabae42c24964",
+      crag: "6298fc46b21fabae42c24970"
     },
     {
       name: "An Bonain Bui",
@@ -85,8 +85,8 @@ export const testUsers = [
       description: "polished",
       lat: "52.161290",
       lng: "-7.231540",
-      climber: "",
-      crag: ""
+      climber: "6298fc46b21fabae42c24964",
+      crag: "6298fc46b21fabae42c24970"
     }
 ];
 
@@ -113,6 +113,6 @@ export const testUsers = [
     description: "polished",
     lat: "52.161290",
     lng: "-7.231540",
-    climber: "",
-    crag: ""
+    climber: "6298fc46b21fabae42c24964",
+    crag: "6298fc46b21fabae42c24970"
   };

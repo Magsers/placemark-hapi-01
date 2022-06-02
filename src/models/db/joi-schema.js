@@ -29,6 +29,7 @@ export const IdSpec = Joi.alternatives().try(Joi.string(), Joi.object()).descrip
     description: Joi.string().allow("").optional().example("Spicy first few moves"),
     lat: Joi.number().allow("").optional().example("51.00"),
     lng: Joi.number().allow("").optional().example("-7.00"),
+    climberid: IdSpec,
     cragid: IdSpec,
   })
   .label("Route");

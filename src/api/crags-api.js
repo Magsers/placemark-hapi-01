@@ -17,10 +17,10 @@ export const cragApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
-    // tags: ["api"],
+    tags: ["api"],
     // response: { schema: CragArraySpec, failAction: validationError },
-    // description: "Get all crags",
-    // notes: "Returns all crags",
+    description: "Get all crags",
+    notes: "Returns all crags",
   },
 
   findOne: {
@@ -38,9 +38,9 @@ export const cragApi = {
         return Boom.notFound("No Crag with this id");
       }
     },
-    // tags: ["api"],
-    // description: "Find a Crag",
-    // notes: "Returns a crag",
+    tags: ["api"],
+    description: "Find a Crag",
+    notes: "Returns a crag",
     // validate: { params: { id: IdSpec }, failAction: validationError },
     // response: { schema: CragSpecPlus, failAction: validationError },
   },
@@ -61,9 +61,9 @@ export const cragApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
-    // tags: ["api"],
-    // description: "Create a Crag",
-    // notes: "Returns the newly created crag",
+    tags: ["api"],
+    description: "Create a Crag",
+    notes: "Returns the newly created crag",
     // validate: { payload: CragSpec, failAction: validationError },
     // response: { schema: CragSpecPlus, failAction: validationError },
   },
@@ -84,8 +84,8 @@ export const cragApi = {
         return Boom.serverUnavailable("No Crag with this id");
       }
     },
-    // tags: ["api"],
-    // description: "Delete a crag",
+    tags: ["api"],
+    description: "Delete a crag",
     // validate: { params: { id: IdSpec }, failAction: validationError },
   },
 
@@ -101,8 +101,8 @@ export const cragApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
-    // tags: ["api"],
-    // description: "Delete all CragApi",
+    tags: ["api"],
+    description: "Delete all CragApi",
   },
 
   
