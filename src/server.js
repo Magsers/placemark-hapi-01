@@ -1,10 +1,10 @@
 import Hapi from "@hapi/hapi";
 import Inert from "@hapi/inert";
 import Vision from "@hapi/vision";
-// import Cookie from "@hapi/cookie";
+import Cookie from "@hapi/cookie";
 import Handlebars from "handlebars";
 import HapiSwagger from "hapi-swagger";
-import AuthCookie  from "@hapi/cookie";
+// import AuthCookie  from "@hapi/cookie";
 import Bell from "@hapi/bell";
 import dotenv from "dotenv";
 import Joi from "joi";
@@ -58,9 +58,9 @@ async function init() {
 
   await server.register(Inert);
   await server.register(Vision);
-  // await server.register(Cookie);
+  await server.register(Cookie);
   await server.register(jwt);
-  await server.register([Bell, AuthCookie]); // Oauth
+  // await server.register([Bell, AuthCookie]); // Oauth
   server.validator(Joi);
 
   server.views({
@@ -75,8 +75,7 @@ async function init() {
     isCached: false,
   });
 
-  // OAuth
-
+ 
   server.auth.strategy("cookie-auth", "cookie", {
     cookie: {
       name: process.env.cookie_name, // Name of auth cookie to be set
@@ -86,17 +85,19 @@ async function init() {
     redirectTo: "/",
     validateFunc: accountsController.validate,
   });
+
+  // OAuth
+
+  // const bellAuthOptions = {
+  //   provider: "github",
+  //   password: "github-encryption-password-secure", // String used to encrypt cookie
+  //   // used during authorisation steps only
+  //   clientId: "d07fc3c79edb62941679",          // *** Replace with app Client Id ****
+  //   clientSecret: "a05dbef0fa8f625ee4a098c9c88d8aaba7c5767c",  // *** Replace with  app Client Secret ***
+  //   isSecure: false        // Should be 'true' in production software (requires HTTPS)
+  // };
   
-  const bellAuthOptions = {
-    provider: "github",
-    password: "github-encryption-password-secure", // String used to encrypt cookie
-    // used during authorisation steps only
-    clientId: "d07fc3c79edb62941679",          // *** Replace with app Client Id ****
-    clientSecret: "a05dbef0fa8f625ee4a098c9c88d8aaba7c5767c",  // *** Replace with  app Client Secret ***
-    isSecure: false        // Should be 'true' in production software (requires HTTPS)
-  };
-  
-  server.auth.strategy("github-oauth", "bell", bellAuthOptions);
+  // server.auth.strategy("github-oauth", "bell", bellAuthOptions);
 
   server.auth.default("cookie-auth", "session");
 

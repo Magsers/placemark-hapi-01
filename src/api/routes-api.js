@@ -55,54 +55,53 @@ findOne: {
     },
   },
 
-  // addRoute: {
-  //   auth: {
-  //     strategy: "jwt",
-  //   },
-  //   handler: async function (request, h) {
-  //     try {
-  //       const route = await db.routeStore.addRoute(request.params.id, request.payload);
-  //       if (route) {
-  //         return h.response(route).code(201);
-  //       }
-  //       return Boom.badImplementation("error creating route");
-  //     } catch (err) {
-  //       return Boom.serverUnavailable("Database Error");
-  //     }
-  //   },
-  //   tags: ["api"],
-  //   description: "Create a route",
-  //   notes: "Returns the newly created route",
-  //   validate: { payload: RouteSpec },
-  //   response: { schema: RouteSpecPlus, failAction: validationError },
-  // },
-
   addRoute: {
     auth: {
       strategy: "jwt",
     },
     handler: async function (request, h) {
-      const crag = await db.cragStore.getCragById(request.params.id);
-      if (!crag) {
-        return Boom.notFound("No Crag with this id");
+      try {
+        const route = await db.routeStore.addRoute(request.params.id, request.payload);
+        if (route) {
+          return h.response(route).code(201);
+        }
+        return Boom.badImplementation("error creating route");
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
       }
-      const route = await db.routeStore.addRoute(
-        request.payload.name,
-        request.payload.grade,
-        request.payload.height,
-        request.payload.firstascent,
-        request.payload.description,
-        request.payload.lat,
-        request.payload.lng,
-        request.auth.credentials,
-        crag
-      );
-      return route;
     },
     // tags: ["api"],
     // description: "Create a route",
     // notes: "Returns the newly created route",
+    // validate: { payload: RouteSpec },
+    // response: { schema: RouteSpecPlus, failAction: validationError },
   },
+
+  // addRoute: {
+  //   auth: {
+  //     strategy: "jwt",
+  //   },
+  //   handler: async function (request, h) {
+  //     const crag = await db.cragStore.getCragById(request.params.id);
+  //     if (!crag) {
+  //       return Boom.notFound("No Crag with this id");
+  //     }
+  //     const route = await db.routeStore.addRoute(
+  //       request.payload.name,
+  //       request.payload.grade,
+  //       request.payload.height,
+  //       request.payload.description,
+  //       request.payload.lat,
+  //       request.payload.lng,
+  //       request.auth.credentials,
+  //       crag
+  //     );
+  //     return route;
+  //   },
+  //   // tags: ["api"],
+  //   // description: "Create a route",
+  //   // notes: "Returns the newly created route",
+  // },
 
   deleteAll: {
     auth: {

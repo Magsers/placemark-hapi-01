@@ -11,12 +11,11 @@ export const routeMongoStore = {
     return routes;
   },
 
-  async addRoute(name, grade, height, firstascent, description, lat, lng, climber, crag) {
+  async addRoute(name, grade, height, description, lat, lng, climber, crag) {
     const newRoute = new Route({
       name: name,
       grade: grade,
       height: height,
-      firstascent: firstascent,
       description: description,
       lat,
       lng,

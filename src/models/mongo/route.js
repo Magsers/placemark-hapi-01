@@ -6,7 +6,6 @@ const routeSchema = new Schema({
   name: String,
   grade: String,
   height: Number,
-  firstascent: String,
   description: String,
   lat: String,
   lng: String,

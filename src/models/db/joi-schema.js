@@ -26,7 +26,6 @@ export const IdSpec = Joi.alternatives().try(Joi.string(), Joi.object()).descrip
     name: Joi.string().required().example("Animal"),
     grade: Joi.string().required().example("E1"),
     height: Joi.number().allow("").optional().example(25),
-    firstascent: Joi.string().allow("").optional().example("Ricky Bell"),
     description: Joi.string().allow("").optional().example("Spicy first few moves"),
     lat: Joi.number().allow("").optional().example("51.00"),
     lng: Joi.number().allow("").optional().example("-7.00"),

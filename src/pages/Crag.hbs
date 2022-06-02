@@ -1,4 +1,4 @@
- <div class="columns is-vcentered">
+<div class="columns is-vcentered">
   <div class="column is-two-thirds">
     {{> TitleBar title="Placemark - Climb Ireland" subTitle="Keep track of the Irish Crags you've climbed in!"}}
   </div>
@@ -8,33 +8,28 @@
 </div>
 
 <section class="section columns is-vcentered">
- <div class="column has-text-left">
+  <div class="column has-text-left">
     <div id="cragtitle" class="title">
       {{crag.title}}
     </div>
     <span class="is-inline">
       <div> Approach : {{crag.approach}}</div>
     </span>
-    </div>
+  </div>
   <div class="column has-text-centered">
-   <img width="300" src="{{crag.img}}" alt="{{crag.title}}"/>
-   <a href="/crag/{{crag._id}}/deleteImage/{{crag.img}}" class="ui icon button">
-                <i class="fas fa-trash-alt"></i>
-            </a>
+    <img width="300" src="{{crag.img}}" alt="{{crag.title}}" />
+    {{!-- <a href="/crag/{{crag._id}}/deleteImage/{{crag.img}}" class="ui icon button">
+      <i class="fas fa-trash-alt"></i>
+    </a> --}}
   </div>
 
-
   <div class="column has-text-centered">
-
-     {{!-- <figure class="image is-256x256">
-      <img src="{{crag.img}}"> 
-      
-    </figure> --}}
   </div>
   <div class="card-content">
     <form action="/crag/{{crag._id}}/uploadimage" method="POST" enctype="multipart/form-data">
       <div id="file-select" class="file has-name is-fullwidth">
-        <label class="file-label"> <input class="file-input" name="imagefile" type="file" name="resume" accept="image/png, image/jpeg">
+        <label class="file-label"> <input class="file-input" name="imagefile" type="file" name="resume"
+            accept="image/png, image/jpeg">
           <span class="file-cta">
             <span class="file-icon">
               <i class="fas fa-upload"></i>
@@ -42,13 +37,12 @@
             <span class="file-label">
               Choose a file…
             </span>
-           </span>
+          </span>
           <span class="file-name"></span>
         </label>
         <button type="submit" class="button is-info">Upload</button>
       </div>
     </form>
   </div>
-  </section>
-   {{> footer }}
- 
+</section>
+{{> footer }}
