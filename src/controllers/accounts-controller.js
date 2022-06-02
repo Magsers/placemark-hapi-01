@@ -23,7 +23,7 @@ export const accountsController = {
       payload: UserSpec,
       options: { abortEarly: false },
       failAction: function (request, h, error) {
-        return h.view("signup-view", { title: "Sign up error", errors: error.details }).takeover().code(400); 
+        return h.view("signup-view", { title: "Sign up error" }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
@@ -33,38 +33,38 @@ export const accountsController = {
       return h.redirect("/");
     },
   },
-//   showLogin: {
-//     auth: false,
-//     // auth: "github-oauth",
-//     handler: function (request, h) {
-//       if (request.auth.isAuthenticated) {
-//         request.cookieAuth.set(request.auth.credentials);
-//         return h.view("Login", { title: "Login to Placemark" });
-//     }
-//     return("Not logged in...");
-//   },
-// },
-
-showLogin: {
-  auth: false,
-  handler: function (request, h) {
-    return h.view("login-view", { title: "Login to Placemark" });
+  showLogin: {
+    auth: "github-oauth",
+    handler: function (request, h) {
+      if (request.auth.isAuthenticated) {
+        request.cookieAuth.set(request.auth.credentials);
+        return h.view("Login", { title: "Login to Placemark " });
+      // return h.view("Login", { title: "Login to Placemark" });
+    }
+    return("Not logged in...");
   },
 },
 
-login: {
+// showLogin: {
+//   auth: false,
+//   handler: function (request, h) {
+//     return h.view("Login", { title: "Login to Placemark" });
+//     },
+//   },
+
+  login: {
     auth: false,
     validate: {
       payload: UserCredentialsSpec,
       options: { abortEarly: false },
       failAction: function (request, h, error) {
-        return h.view("Login", { title: "Login error", errors: error.details }).takeover().code(400);
+        return h.view("login-view", { title: "Login error", errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
       const { email, password } = request.payload;
       const user = await db.userStore.getUserByEmail(email);
-      // const passwordsMatch = await bcrypt.compare(password, user.password);
+      const passwordsMatch = await bcrypt.compare(password, user.password);
       // if (!user || !passwordsMatch) {
       if (!user || user.password !== password) {        
         return h.redirect("/");

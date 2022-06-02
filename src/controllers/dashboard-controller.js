@@ -22,13 +22,11 @@ export const dashboardController = {
       payload: RouteSpec,
       options: { abortEarly: false },
       failAction: function (request, h, error) {
-        return h.view("crag-view", { title: "Add Route error", errors: error.details }).takeover().code(400);
+        return h.view("Dashboard", { title: "Add Route error", errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
       try {
-        // const date = new Date();
-        // const timestamp = date.toLocaleDateString();
         const loggedInUser = request.auth.credentials;
         const rawCrag = request.payload.crag;
         const crag = await db.cragStore.findByTitle(rawCrag);
