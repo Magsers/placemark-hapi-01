@@ -10,8 +10,8 @@ export const IdSpec = Joi.alternatives().try(Joi.string(), Joi.object()).descrip
     .label("UserCredentials");
   
   export const UserSpec = UserCredentialsSpec.keys({
-    firstName: Joi.string().example("Homer").required(),
-    lastName: Joi.string().example("Simpson").required(),
+    firstName: Joi.string().example("Homer").regex(/^[A-Z][a-z]{2,}$/).required(),
+    lastName: Joi.string().example("Simpson").regex(/^[A-Z][a-z]{2,}$/).required(),
   }).label("UserDetails");
   
   export const UserSpecPlus = UserSpec.keys({
