@@ -6,7 +6,7 @@ import Handlebars from "handlebars";
 import HapiSwagger from "hapi-swagger";
 
 // import AuthCookie  from "@hapi/cookie";
-import Bell from "@hapi/bell";
+// import Bell from "@hapi/bell";
 import dotenv from "dotenv";
 import Joi from "joi";
 import path from "path";

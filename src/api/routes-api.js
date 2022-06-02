@@ -55,28 +55,6 @@ findOne: {
     },
   },
 
-  // addRoute: {
-  //   auth: {
-  //     strategy: "jwt",
-  //   },
-  //   handler: async function (request, h) {
-  //     try {
-  //       const route = await db.routeStore.addRoute(request.params.id, request.payload);
-  //       if (route) {
-  //         return h.response(route).code(201);
-  //       }
-  //       return Boom.badImplementation("error creating route");
-  //     } catch (err) {
-  //       return Boom.serverUnavailable("Database Error");
-  //     }
-  //   },
-  //   tags: ["api"],
-  //   description: "Create a route",
-  //   notes: "Returns the newly created route",
-    // validate: { payload: RouteSpec },
-    // response: { schema: RouteSpecPlus, failAction: validationError },
-  // },
-
   addRoute: {
     auth: {
       strategy: "jwt",
