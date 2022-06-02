@@ -34,8 +34,6 @@ export const dashboardController = {
   //       name: request.payload.name,
   //       grade: request.payload.grade,
   //       height: Number(request.payload.height),
-  
-  //       description: request.payload.description,
   //       lat: request.payload.lat,
   //       lng: request.payload.lng,
   //       climber: loggedInUser._id, 

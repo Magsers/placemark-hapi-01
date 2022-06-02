@@ -4,6 +4,7 @@ import Vision from "@hapi/vision";
 import Cookie from "@hapi/cookie";
 import Handlebars from "handlebars";
 import HapiSwagger from "hapi-swagger";
+
 // import AuthCookie  from "@hapi/cookie";
 import Bell from "@hapi/bell";
 import dotenv from "dotenv";
@@ -60,7 +61,6 @@ async function init() {
   await server.register(Vision);
   await server.register(Cookie);
   await server.register(jwt);
-  // await server.register([Bell, AuthCookie]); // Oauth
   server.validator(Joi);
 
   server.views({
@@ -75,11 +75,10 @@ async function init() {
     isCached: false,
   });
 
- 
-  server.auth.strategy("cookie-auth", "cookie", {
+server.auth.strategy("session", "cookie", {
     cookie: {
-      name: process.env.cookie_name, // Name of auth cookie to be set
-      password: process.env.cookie_password,  // String used to encrypt cookie
+      name: process.env.cookie_name,
+      password: process.env.cookie_password,
       isSecure: false,
     },
     redirectTo: "/",
@@ -99,7 +98,7 @@ async function init() {
   
   // server.auth.strategy("github-oauth", "bell", bellAuthOptions);
 
-  server.auth.default("cookie-auth", "session");
+  server.auth.default("session");
 
   server.auth.strategy("jwt", "jwt", {
     key: process.env.cookie_password,

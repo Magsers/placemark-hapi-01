@@ -47,7 +47,7 @@ export const seedData = {
         img: "https://res.cloudinary.com/dilnorp24/image/upload/v1648250072/rc3ndpxmowmgysnejmba.jpg"
       },
       ballykeefe: {
-        title: "Ballykeefe Quarry",
+        title: "Ballykeefe",
         approach: "Park at entrance to the woods and walk to the ampitheatre",
         lat: "52.60923",
         lng: "-7.40002159",

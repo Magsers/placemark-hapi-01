@@ -41,7 +41,6 @@ export const accountsController = {
   },
   login: {
     auth: false,
-    // auth: "github-oauth",
     validate: {
       payload: UserCredentialsSpec,
       options: { abortEarly: false },
@@ -53,13 +52,12 @@ export const accountsController = {
       const { email, password } = request.payload;
       const user = await db.userStore.getUserByEmail(email);
       const passwordsMatch = await bcrypt.compare(password, user.password);
-      if (!user || !passwordsMatch) {
-      // if (!user || user.password !== password) {   // bcrypt     
-      // if (!request.auth.isAuthenticated) { // OAuth
+      // if (!user || !passwordsMatch) {
+      if (!user || user.password !== password) {        
         return h.redirect("/");
-      } 
-        request.cookieAuth.set({ id: user._id }); 
-        return h.redirect("/dashboard");
+      }
+      request.cookieAuth.set({ id: user._id });
+      return h.redirect("/dashboard");
     },
   },
   logout: {
