@@ -23,7 +23,7 @@ export const accountsController = {
       payload: UserSpec,
       options: { abortEarly: false },
       failAction: function (request, h, error) {
-        return h.view("signup-view", { title: "Sign up error" }).takeover().code(400);
+        return h.view("Signup", { title: "Sign up error", errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
@@ -45,7 +45,7 @@ export const accountsController = {
       payload: UserCredentialsSpec,
       options: { abortEarly: false },
       failAction: function (request, h, error) {
-        return h.view("login-view", { title: "Login error", errors: error.details }).takeover().code(400);
+        return h.view("Login", { title: "Login error", errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
