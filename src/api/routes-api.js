@@ -18,7 +18,7 @@ export const routesApi = {
     }
   },
   tags: ["api"],
-  response: { schema: RouteArraySpec, failAction: validationError },
+  // response: { schema: RouteArraySpec, failAction: validationError },
   description: "Get all routeApi",
   notes: "Returns all routeApi",
 },
