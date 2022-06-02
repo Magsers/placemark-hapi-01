@@ -34,24 +34,11 @@ export const accountsController = {
     },
   },
   showLogin: {
-    auth: "github-oauth",
+    auth: false,
     handler: function (request, h) {
-      if (request.auth.isAuthenticated) {
-        request.cookieAuth.set(request.auth.credentials);
-        return h.view("Login", { title: "Login to Placemark " });
-      // return h.view("Login", { title: "Login to Placemark" });
-    }
-    return("Not logged in...");
+      return h.view("Login", { title: "Login to Placemark" });
+    },
   },
-},
-
-// showLogin: {
-//   auth: false,
-//   handler: function (request, h) {
-//     return h.view("Login", { title: "Login to Placemark" });
-//     },
-//   },
-
   login: {
     auth: false,
     validate: {
