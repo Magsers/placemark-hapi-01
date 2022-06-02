@@ -20,7 +20,7 @@ export const userApi = {
     tags: ["api"],
     description: "Get all userApi",
     notes: "Returns details of all userApi",
-    // response: { schema: UserArray, failAction: validationError },
+    response: { schema: UserArray, failAction: validationError },
   },
 
   findOne: {
@@ -61,8 +61,8 @@ export const userApi = {
     tags: ["api"],
     description: "Create a User",
     notes: "Returns the newly created user",
-    // validate: { payload: UserSpec, failAction: validationError },
-    // response: { schema: UserSpecPlus, failAction: validationError },
+    validate: { payload: UserSpec, failAction: validationError },
+    response: { schema: UserSpecPlus, failAction: validationError },
   },
 
   deleteAll: {
@@ -102,8 +102,7 @@ export const userApi = {
     tags: ["api"],
     description: "Authenticate  a User",
     notes: "If user has valid email/password, create and return a JWT token",
-  //   validate: { payload: UserCredentialsSpec, failAction: validationError },
-  //   response: { schema: JwtAuth, failAction: validationError }
-  // 
+    validate: { payload: UserCredentialsSpec, failAction: validationError },
+    response: { schema: JwtAuth, failAction: validationError } 
   },
 };
