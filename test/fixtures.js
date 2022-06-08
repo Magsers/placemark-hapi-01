@@ -1,4 +1,4 @@
-export const serviceUrl = "http://localhost:4000";
+export const serviceUrl = "https://infinite-eyrie-16203.herokuapp.com";
 
 export const maggie = {
   firstName: "Maggie",
